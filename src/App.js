@@ -83,7 +83,7 @@ function App() {
       if (new Date(year, month, i).getDay() === 5) {
         daysObj.push({
           "day": i,
-          "isFriday": true
+          "isFriday": true //Add values for Dynamic Styling and Values
         });
       } else {
         daysObj.push({ "day": i });
