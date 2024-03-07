@@ -144,7 +144,7 @@ function App() {
                     className={`p-1 w-11 text-sm font-semibold flex justify-center md:p-8 border-1 border-slate-200 shadow-md ${isPast ? 'bg-gray-300 cursor-default font-normal line-through' : 'cursor-pointer'} ${daysFromPrevMonth || daysFromNextMonth ? 'bg-gray-300' : ''} ${isToday ? 'bg-indigo-600 text-white' : ''}`}
                   >
                     {day.day >= 100 ? day.day / 100 : Math.abs(day.day)}
-                    {day.isFriday ? <div className='text-xs text-red-500'>Friday</div> : ''}
+                    {day.isFriday ? <div className='text-xs text-red-500'>£{500 * 1.2}</div> : ''}
                   </div>
                 );
               })}
