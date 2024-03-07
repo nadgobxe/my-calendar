@@ -162,7 +162,7 @@ function App() {
                 // Compare the year, month, and day components individually
                 const isToday = checkToday.getFullYear() === myToday.getFullYear() &&
                   checkToday.getMonth() === myToday.getMonth() &&
-                  checkToday.getDate() === myToday.getDate();
+                  checkToday.getDate() === myToday.getDate(); // Check if the day is today
 
 
                 return (
