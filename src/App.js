@@ -72,27 +72,34 @@ function App() {
     const daysFromNextMonth = 7 - ((daysFromPreviousMonth + daysInCurrentMonth) % 7);
     console.log(daysFromPreviousMonth, daysFromNextMonth)
 
-    let daysArray = [];
+    let daysObj = [];
     // Add days from the previous month
     for (let i = daysFromPreviousMonth; i > 0; i--) {
-      daysArray.push({"day": -(daysInPreviousMonth - i + 1)});
+      daysObj.push({ "day": -(daysInPreviousMonth - i + 1) });
 
     }
     // Add days of the current month
     for (let i = 1; i <= daysInCurrentMonth; i++) {
-      daysArray.push({"day": i});
+      if (new Date(year, month, i).getDay() === 5) {
+        daysObj.push({
+          "day": i,
+          "isFriday": true
+        });
+      } else {
+        daysObj.push({ "day": i });
+      }
     }
     // Optionally, add days from the next month to complete the last week
-    if (daysFromNextMonth === 7) { return daysArray; }
+    if (daysFromNextMonth === 7) { return daysObj; }
     else {
       for (let i = 1; i <= daysFromNextMonth; i++) {
         console.log(`hello${-i}1`)
-        daysArray.push({"day": i * 100});
+        daysObj.push({ "day": i * 100 });
       }
     }
 
-    console.log(daysArray)
-    return daysArray;
+    console.log(daysObj)
+    return daysObj;
   };
 
   useEffect(() => {
@@ -136,6 +143,7 @@ function App() {
                     className={`p-1 w-11 text-sm font-semibold flex justify-center md:p-8 border-1 border-slate-200 shadow-md ${isPast ? 'bg-gray-300 cursor-default font-normal line-through' : 'cursor-pointer'} ${daysFromPrevMonth || daysFromNextMonth ? 'bg-gray-300' : ''} ${isToday ? 'bg-indigo-600 text-white' : ''}`}
                   >
                     {day.day >= 100 ? day.day / 100 : Math.abs(day.day)}
+                    {day.isFriday ? <div className='text-xs text-red-500'>Friday</div> : ''}
                   </div>
                 );
               })}
