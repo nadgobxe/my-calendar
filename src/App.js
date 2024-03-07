@@ -86,6 +86,16 @@ function App() {
           "day": i,
           "isFriday": true //Add values for Dynamic Styling and Values
         });
+      } else if (new Date(year, month, i).getDay() === 4) {
+        daysObj.push({
+          "day": i,
+          "isThursday": true //Add values for Dynamic Styling and Values
+        });
+      } else if (new Date(year, month, i).getDay() === 6) {
+        daysObj.push({
+          "day": i,
+          "isSunday": true //Add values for Dynamic Styling and Values
+        });
       } else {
         daysObj.push({ "day": i });
       }
@@ -159,10 +169,24 @@ function App() {
                 return (
                   <div
                     key={index}
-                    className={`p-1 w-11 text-sm font-semibold flex justify-center md:p-8 border-1 border-slate-200 shadow-md ${isPast ? 'bg-gray-300 cursor-default font-normal line-through' : 'cursor-pointer'} ${daysFromPrevMonth || daysFromNextMonth ? 'bg-gray-300' : ''} ${isToday ? 'bg-indigo-600 text-white' : ''}`}
+                    className={`p-1 w-11 text-sm font-semibold flex justify-center md:p-8 border-1 border-slate-200 shadow-md ${isPast || day.isSunday ? 'bg-gray-300 cursor-default font-normal line-through' : 'cursor-pointer'} ${daysFromPrevMonth || daysFromNextMonth ? 'bg-gray-300' : ''} ${isToday ? 'bg-indigo-600 text-white' : ''}`}
                   >
-                    {day.day >= 100 ? day.day / 100 : Math.abs(day.day)}
-                    {day.isFriday ? <div className='text-xs text-red-500'>£{500 * 1.2}</div> : <div className='text-xs text-red-500'>£500</div>}
+                    <div className="flex flex-col justify-center items-center">
+                      <div>
+                        {day.day >= 100 ? day.day / 100 : Math.abs(day.day)}
+                      </div>
+                      <div>
+                        {day.isFriday ? (
+                          <div className='text-xs text-red-500'>£{500 * 1.2}</div>
+                        ) : day.isThursday ? (
+                          <div className='text-xs text-red-500'>£{500 * 1.1}</div>
+                        ) : day.isSunday ? (
+                          <div className='text-xs text-red-500'></div>
+                        ) : (
+                          <div className='text-xs text-red-500'>£500</div>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 );
               })}
