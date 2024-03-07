@@ -111,6 +111,7 @@ function App() {
     setToday(today.getDate());
     setCalendarDays(generateCalendarDays(currentYear, currentMonth));
 
+
     console.log(month)
   }, []);
 
@@ -137,14 +138,26 @@ function App() {
                 const isPast = new Date(year, months.indexOf(month), day.day + 1) < currentDate;
                 const daysFromPrevMonth = day.day < 0;
                 const daysFromNextMonth = day.day >= 100;
-                const isToday = day.day === today;
+
+                const date = new Date();
+                const currentYear = date.getFullYear();
+                const currentMonth = date.getMonth();
+
+                // Create a new Date object representing the day you want to check
+                const checkToday = new Date(currentYear, currentMonth, day.day);
+
+                console.log(`checkToday: ${checkToday}, today: ${today}`)
+                // Compare the year, month, and day components individually
+                const isToday = checkToday === today;
+
+
                 return (
                   <div
                     key={index}
                     className={`p-1 w-11 text-sm font-semibold flex justify-center md:p-8 border-1 border-slate-200 shadow-md ${isPast ? 'bg-gray-300 cursor-default font-normal line-through' : 'cursor-pointer'} ${daysFromPrevMonth || daysFromNextMonth ? 'bg-gray-300' : ''} ${isToday ? 'bg-indigo-600 text-white' : ''}`}
                   >
                     {day.day >= 100 ? day.day / 100 : Math.abs(day.day)}
-                    {day.isFriday ? <div className='text-xs text-red-500'>£{500 * 1.2}</div> : ''}
+                    {day.isFriday ? <div className='text-xs text-red-500'>£{500 * 1.2}</div> : <div className='text-xs text-red-500'>£500</div>}
                   </div>
                 );
               })}
