@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import {logo} from './assets/logo_v1_1.png'
 
 function App() {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -118,7 +119,7 @@ function App() {
       <main className='p-4 mx-auto'>
         <div className='flex flex-col gap-5 mx-auto'>
           <div className='inline-block'>
-            <div><h1>Calendar</h1></div>
+            <div><img src={logo}></img></div>
             <div className='flex md:p-5'>
               <div className='flex-none'><button value="back" onClick={(e) => handleMonthChange(() => e.target.value)}>Back</button></div>
               <div className='grow flex justify-center'>{month} {year}</div>
