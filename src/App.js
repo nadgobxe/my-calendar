@@ -165,7 +165,6 @@ function App() {
                   checkToday.getDate() === myToday.getDate();
 
 
-
                 return (
                   <div
                     key={index}
