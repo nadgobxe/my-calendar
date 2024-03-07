@@ -4,7 +4,7 @@ import logo from './assets/logo_v1_1.png'
 
 function App() {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  const days = ["Mon", "Tue", "Wedy", "Thu", "Fri", "Sat", "Sun"];
+  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   const [calendarDays, setCalendarDays] = useState([]);
   const [today, setToday] = useState(new Date().getDate());
