@@ -75,22 +75,23 @@ function App() {
     let daysArray = [];
     // Add days from the previous month
     for (let i = daysFromPreviousMonth; i > 0; i--) {
-      daysArray.push(-(daysInPreviousMonth - i + 1));
-      console.log(daysArray)
+      daysArray.push({"day": -(daysInPreviousMonth - i + 1)});
+
     }
     // Add days of the current month
     for (let i = 1; i <= daysInCurrentMonth; i++) {
-      daysArray.push(i);
+      daysArray.push({"day": i});
     }
     // Optionally, add days from the next month to complete the last week
     if (daysFromNextMonth === 7) { return daysArray; }
     else {
       for (let i = 1; i <= daysFromNextMonth; i++) {
         console.log(`hello${-i}1`)
-        daysArray.push(i * 100);
+        daysArray.push({"day": i * 100});
       }
     }
 
+    console.log(daysArray)
     return daysArray;
   };
 
@@ -125,16 +126,16 @@ function App() {
             <div className='grid grid-cols-7 gap-1 p-1 md:gap-4 border border-indigo-600 border-round m-auto md:p-5'>
               {calendarDays.map((day, index) => {
                 const currentDate = new Date();
-                const isPast = new Date(year, months.indexOf(month), day + 1) < currentDate;
-                const daysFromPrevMonth = day < 0;
-                const daysFromNextMonth = day >= 100;
-                const isToday = day === today;
+                const isPast = new Date(year, months.indexOf(month), day.day + 1) < currentDate;
+                const daysFromPrevMonth = day.day < 0;
+                const daysFromNextMonth = day.day >= 100;
+                const isToday = day.day === today;
                 return (
                   <div
                     key={index}
                     className={`p-1 w-11 text-sm font-semibold flex justify-center md:p-8 border-1 border-slate-200 shadow-md ${isPast ? 'bg-gray-300 cursor-default font-normal line-through' : 'cursor-pointer'} ${daysFromPrevMonth || daysFromNextMonth ? 'bg-gray-300' : ''} ${isToday ? 'bg-indigo-600 text-white' : ''}`}
                   >
-                    {day >= 100 ? day / 100 : Math.abs(day)}
+                    {day.day >= 100 ? day.day / 100 : Math.abs(day.day)}
                   </div>
                 );
               })}
