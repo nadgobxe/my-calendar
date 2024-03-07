@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import {logo} from './assets/logo_v1_1.png'
+import logo from './assets/logo_v1_1.png'
 
 function App() {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
