@@ -139,16 +139,21 @@ function App() {
                 const daysFromPrevMonth = day.day < 0;
                 const daysFromNextMonth = day.day >= 100;
 
-                const date = new Date();
-                const currentYear = date.getFullYear();
-                const currentMonth = date.getMonth();
+                const currentYear = currentDate.getFullYear();
+                const currentMonth = currentDate.getMonth();
+                const currentDay = currentDate.getDate();
 
                 // Create a new Date object representing the day you want to check
                 const checkToday = new Date(currentYear, currentMonth, day.day);
+                const myToday = new Date(year, months.indexOf(month), today);
 
-                console.log(`checkToday: ${checkToday}, today: ${today}`)
+                console.log(`checkToday: ${checkToday}, today: ${myToday}`)
                 // Compare the year, month, and day components individually
-                const isToday = checkToday === today;
+                // Compare the year, month, and day components individually
+                const isToday = checkToday.getFullYear() === myToday.getFullYear() &&
+                  checkToday.getMonth() === myToday.getMonth() &&
+                  checkToday.getDate() === myToday.getDate();
+
 
 
                 return (
